@@ -7,11 +7,11 @@
 	Include this file in your project source and now you can translate a string
 	to LolSpeak like so  
 	
-			var catSays = LOLTranslate('Hello World'); // outputs 'OH HAI WHIRLD'
+			let catSays = LOLTranslate('Hello World'); // outputs 'OH HAI WHIRLD'
 	
 	You can pass false as a second param to return lowercase output:  
 	
-			var catSays = LOLTranslate('Hello World', false); // outputs 'oh hai wurrld'
+			let catSays = LOLTranslate('Hello World', false); // outputs 'oh hai wurrld'
 	
 	that's about it... have fun!
 	
@@ -40,116 +40,142 @@ OUT OF OR IN CONNECSHUN WITH TEH SOFTWIS OR TEH USE OR UDDR DEALINGS IN
 TEH SOFTWAR.
 */
 
-var LOLTranslate = function(str, c){
-	var c = (typeof c === 'undefined' || c == true) ? true : false;
-	var regExp = '';
-	var dictionary = 	{
-		'i can have': "i can has",
-		'oh really'	: "orly",
-		'seriously'	: "srsly",
-		'uestion'		: "wesjun",
-		
-		/* 6 */
-		'unless'		: "unles",
-		'really'		: ["rly", "rily", "rilly", "rilley"],
-		"you're"		: ["yore", "yr"],
-		'buddah'		: 'ceiling cat',
-		'kitten'		: 'kitteh',
-		
-		/* 5 */
-		'cture'			: "kshur",
-		'esque'			: "esk",
-		'tious'			: "shus",
-		'thank'			: ["fank", "tank", "thx", "thnx"],
-		'world'			: ["wurrld", "whirld", "wurld", "wrld"],
-		'hello'			: 'oh hai',
-		'howdy'			: 'oh hai',
-		'allah'			: 'ceiling cat',
-		'diety'			: 'ceiling cat',
-		'kitty'			: 'kitteh',
-		
-		
-		/* 4 */
-		'this'			: "thiz",
-		'eady'			: "eddy",
-		'what'			: ["wut", "whut"],
-		'more'			: "moar",
-		'sion'			: "shun",
-		'just'			: "jus",
-		'want'			: "waants",
-		'eese'			: "eez",
-		'ucke'			: ["ukki", "ukke"],
-		'sion'			: "shun",
-		'like'			: ["likes", "liek"],
-		'love'			: ["loves", "lub", "lubs", "luv"],
-		'outh'			: "owf",
-		'scio'			: "shu",
-		'ture'			: "chur",
-		'sure'			: "shur",
-		'were'			: "was",
-		'ease'			: "eez",
-		'have'			: ["has", "hav", "haz a"],
-		'your'			: ["yur", "ur", "yore", "yoar"],
-		'good'			: ["gud", "goed", "guud", "gude", "gewd"],
-		'ight'			: "ite",
-		'tion'			: "shun",
-		
-		
-		/* 3 */
-		'ome'				: "um",
-		'are'				: ["r", "is", "ar"],
-		'you'				: ["yu", "yous", "yoo", "u"],
-		'the'				: "teh",
-		'ose'				: "oze",
-		'ead'				: "edd",
-		'eak'				: "ekk",
-		'age'				: "uj",
-		'dog'				: "slowpaw",
-		'who'				: "hoo",
-		'ese'				: "eez",
-		'too'				: ["to", "2"],
-		'tty'				: "tteh",
-		'thy'				: "fee",
-		'que'				: "kwe",
-		'oth'				: "udd",
-		'ing'				: ["in", "ins", "ng", "ing"],
-		'ove'				: ["oov", "ove", "uuv", "uv", "oove"],
-		'for'				: ["fore", "4", "fr", "fur", "for", "foar"],
-		"i'm"				: "im",
-		'hey'				: 'oh hai',
-		'god'				: 'ceiling cat',
-		'cat'				: 'kitteh',
-		
-		/* 2 */
-		'ph'				: "f",
-		'as'				: "az",
-		'my'				: ["muh", "mah"],
-		'er'				: "r",
-		'of'				: ["of", "ov", "of"],
-		'is'				: ["ar teh", "ar"],
-		'nd'				: "n",
-		'ok'				: ["k", "kay"],
-		'ym'				: "im",
-		'ly'				: "li"
-	};
+let dictionary = 	{
+	'i can have': "i can has",
+	'oh really'	: "orly",
+	'seriously'	: "srsly",
+	'uestion'		: "wesjun",
+	
+	/* 6 */
+	'unless'		: "unles",
+	'really'		: ["rly", "rily", "rilly", "rilley"],
+	"you're"		: ["yore", "yr"],
+	'buddah'		: 'ceiling cat',
+	'kitten'		: 'kitteh',
+	
+	/* 5 */
+	'cture'			: "kshur",
+	'esque'			: "esk",
+	'tious'			: "shus",
+	'thank'			: ["fank", "tank", "thx", "thnx"],
+	'world'			: ["wurrld", "whirld", "wurld", "wrld"],
+	'hello'			: 'oh hai',
+	'howdy'			: 'oh hai',
+	'allah'			: 'ceiling cat',
+	'diety'			: 'ceiling cat',
+	'kitty'			: 'kitteh',
+	
+	
+	/* 4 */
+	'this'			: "thiz",
+	'eady'			: "eddy",
+	'what'			: ["wut", "whut"],
+	'more'			: "moar",
+	'sion'			: "shun",
+	'just'			: "jus",
+	'want'			: "waants",
+	'eese'			: "eez",
+	'ucke'			: ["ukki", "ukke"],
+	'sion'			: "shun",
+	'like'			: ["likes", "liek"],
+	'love'			: ["loves", "lub", "lubs", "luv"],
+	'outh'			: "owf",
+	'scio'			: "shu",
+	'ture'			: "chur",
+	'sure'			: "shur",
+	'were'			: "was",
+	'ease'			: "eez",
+	'have'			: ["has", "hav", "haz a"],
+	'your'			: ["yur", "ur", "yore", "yoar"],
+	'good'			: ["gud", "goed", "guud", "gude", "gewd"],
+	'ight'			: "ite",
+	'tion'			: "shun",
+	
+	
+	/* 3 */
+	'ome'				: "um",
+	'are'				: ["r", "is", "ar"],
+	'you'				: ["yu", "yous", "yoo", "u"],
+	'the'				: "teh",
+	'ose'				: "oze",
+	'ead'				: "edd",
+	'eak'				: "ekk",
+	'age'				: "uj",
+	'dog'				: "slowpaw",
+	'who'				: "hoo",
+	'ese'				: "eez",
+	'too'				: ["to", "2"],
+	'tty'				: "tteh",
+	'thy'				: "fee",
+	'que'				: "kwe",
+	'oth'				: "udd",
+	'ing'				: ["in", "ins", "ng", "ing"],
+	'ove'				: ["oov", "ove", "uuv", "uv", "oove"],
+	'for'				: ["fore", "4", "fr", "fur", "for", "foar"],
+	"i'm"				: "im",
+	'hey'				: 'oh hai',
+	'god'				: 'ceiling cat',
+	'cat'				: 'kitteh',
+	
+	/* 2 */
+	'ph'				: "f",
+	'as'				: "az",
+	'my'				: ["muh", "mah"],
+	'er'				: "r",
+	'of'				: ["of", "ov", "of"],
+	'is'				: ["ar teh", "ar"],
+	'nd'				: "n",
+	'ok'				: ["k", "kay"],
+	'ym'				: "im",
+	'ly'				: "li"
+};
+
+let LOLTranslate = function(str, c){
+	str = ""+str;
+	c = (typeof c === 'undefined' || c == true) ? true : false;
+	let regExp = '';
+
 	str = str.toLowerCase();
+	
+	let tokens = str.match(new RegExp(/(\{[^{}]+?\}|{[^{}]+?,[^{}]+?,.*})/, 'gm'));
+	let tokenMap = {};
+	tokenId = 0;
+	
+	if (tokens) {
+		for (let i=0, l=tokens.length; i<l; i++){
+			let tokenKey = "!!!TOKEN:"+(tokenId++)+"!!!";
+			tokenMap[tokenKey] = tokens[i];
+			str = str.replace(tokens[i], tokenKey);
+		}
+	}
 	
 	for(k in dictionary){
 		regExp += '('+k+')|';
 	}
 	regExp = regExp.slice(0, -1);
 	
-	var match = new RegExp(regExp, 'gm');
-	var matches = str.match(match);
-	// nothing to replace, return home...
-	if(!matches){ return (c) ? str.toUpperCase() : str; }
-	
-	for(var i=0, l=matches.length; i<l; i++){
-		var replace = dictionary[matches[i]];
-		if(typeof replace !== 'string'){
-			replace = replace[ Math.floor(Math.random() * replace.length) ];
+	let match = new RegExp(regExp, 'gm');
+	let matches = str.match(match);
+
+	if ( matches ) {
+		for(let i=0, l=matches.length; i<l; i++){
+			let replace = dictionary[matches[i]];
+			if(typeof replace !== 'string'){
+				replace = replace[ Math.floor(Math.random() * replace.length) ];
+			}
+			str = str.replace(matches[i], replace);
 		}
-		str = str.replace(matches[i], replace);
 	}
-	return (c) ? str.toUpperCase() : str;
+	
+	let toReturn = (c) ? str.toUpperCase() : str;
+
+	// Add tokens back.
+	let tokenKeys = Object.keys(tokenMap);
+	for (let i=0, l=tokenKeys.length; i<l; i++){
+		toReturn = toReturn.replace(tokenKeys[i], tokenMap[tokenKeys[i]]);
+	}
+	
+	return toReturn;
 };
+
+module.exports = LOLTranslate
